@@ -382,7 +382,7 @@
 
 		var filename = element.href.split('/');
 		filename = filename[filename.length-1];
-		if(element && filename.substr(0,3) == 'ai-'){
+		if(element && filename.substr(0,3) == 'ia-'){
 			$.each( this.thumbs, function ( idx, thumb ) {
 				if ( thumb.title.getPrefixedText() === title.getPrefixedText() && thumb.thumb.src === element.href) {
 					viewer.loadImage( thumb.image, thumb.$thumb.clone()[ 0 ], true );
