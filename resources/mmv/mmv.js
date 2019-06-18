@@ -128,7 +128,17 @@
 	MMVP.initWithThumbs = function ( thumbs ) {
 		var i, thumb;
 
-		this.thumbs = thumbs;
+		var temp = {};
+		var cleanThumbs = [];
+
+		$.each( thumbs, function ( idx, thumb ) {
+			temp[thumb.link] = thumb;
+		});
+		$.each( temp, function ( idx, item ) {
+			cleanThumbs.push(item);
+		});
+
+		this.thumbs = cleanThumbs;
 
 		for ( i = 0; i < this.thumbs.length; i++ ) {
 			thumb = this.thumbs[ i ];
