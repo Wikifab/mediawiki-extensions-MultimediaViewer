@@ -128,7 +128,17 @@
 	MMVP.initWithThumbs = function ( thumbs ) {
 		var i, thumb;
 
-		this.thumbs = thumbs;
+		var temp = {};
+		var cleanThumbs = [];
+
+		$.each( thumbs, function ( idx, thumb ) {
+			temp[thumb.link] = thumb;
+		});
+		$.each( temp, function ( idx, item ) {
+			cleanThumbs.push(item);
+		});
+
+		this.thumbs = cleanThumbs;
 
 		for ( i = 0; i < this.thumbs.length; i++ ) {
 			thumb = this.thumbs[ i ];
@@ -382,7 +392,7 @@
 
 		var filename = element.href.split('/');
 		filename = filename[filename.length-1];
-		if(element && filename.substr(0,3) == 'ai-'){
+		if(element && filename.substr(0,3) == 'ia-'){
 			$.each( this.thumbs, function ( idx, thumb ) {
 				if ( thumb.title.getPrefixedText() === title.getPrefixedText() && thumb.thumb.src === element.href) {
 					viewer.loadImage( thumb.image, thumb.$thumb.clone()[ 0 ], true );
