@@ -390,17 +390,22 @@
 
 		this.comingFromHashChange = !updateHash;
 
-		if(element){
+		var isAnnotated = false;
+		if(element) {
 			var filename = element.href.split('/');
-			filename = filename[filename.length-1];
-			if(filename.substr(0,3) === 'ia-'){
-				$.each( this.thumbs, function ( idx, thumb ) {
-					if ( thumb.title.getPrefixedText() === title.getPrefixedText() && thumb.thumb.src === element.href) {
-						viewer.loadImage( thumb.image, thumb.$thumb.clone()[ 0 ], true );
-						return false;
-					}
-				} );
+			filename = filename[filename.length - 1];
+			if (filename.substr(0, 3) === 'ia-') {
+				isAnnotated = true;
 			}
+		}
+
+		if(isAnnotated){
+			$.each( this.thumbs, function ( idx, thumb ) {
+				if ( thumb.title.getPrefixedText() === title.getPrefixedText() && thumb.thumb.src === element.href) {
+					viewer.loadImage( thumb.image, thumb.$thumb.clone()[ 0 ], true );
+					return false;
+				}
+			} );
 		} else {
 			$.each( this.thumbs, function ( idx, thumb ) {
 				if ( thumb.title.getPrefixedText() === title.getPrefixedText()) {
