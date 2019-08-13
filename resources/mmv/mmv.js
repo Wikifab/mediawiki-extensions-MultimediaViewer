@@ -401,7 +401,14 @@
 
 		if(isAnnotated){
 			$.each( this.thumbs, function ( idx, thumb ) {
-				if ( thumb.title.getPrefixedText() === title.getPrefixedText() && thumb.thumb.src === element.href) {
+				if ( thumb.title.getPrefixedText() !== title.getPrefixedText() ) {
+					return;
+				}
+				var thumbsrc = $(element).data('thumbsrc');
+				if ( decodeURIComponent(thumb.thumb.src).indexOf(thumbsrc) != -1) {
+					// clone image and change src to use bigger image :
+					var image = thumb.image;
+					image.src = element.href;
 					viewer.loadImage( thumb.image, thumb.$thumb.clone()[ 0 ], true );
 					return false;
 				}
