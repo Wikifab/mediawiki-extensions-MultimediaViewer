@@ -401,11 +401,13 @@
 
 		if(isAnnotated){
 			$.each( this.thumbs, function ( idx, thumb ) {
+
 				if ( thumb.title.getPrefixedText() !== title.getPrefixedText() ) {
-					return;
+					return false;
 				}
 				var thumbsrc = $(element).data('thumbsrc');
-				if ( decodeURIComponent(thumb.thumb.src).indexOf(thumbsrc) != -1) {
+				var thisThumbUrl = decodeURI(thumb.thumb.src);
+				if ( thisThumbUrl.indexOf(thumbsrc) != -1) {
 					// clone image and change src to use bigger image :
 					var image = thumb.image;
 					image.src = element.href;
