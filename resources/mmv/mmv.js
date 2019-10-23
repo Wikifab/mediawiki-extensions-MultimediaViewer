@@ -403,7 +403,7 @@
 			$.each( this.thumbs, function ( idx, thumb ) {
 
 				if ( thumb.title.getPrefixedText() !== title.getPrefixedText() ) {
-					return false;
+					return ;
 				}
 				var thumbsrc = $(element).data('thumbsrc');
 				var thisThumbUrl = decodeURI(thumb.thumb.src);
